@@ -1,0 +1,13 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+    <div class="uk-sticky uk-divider-icon" >
+        <ul class="uk-nav-primary uk-nav-parent-icon" uk-nav>
+            <li><a uk-icon="upload" href="{% url 'upload_file' %}">New</a></li>         
+            <li><a href="{% url 'files' %}">My Files</a></l>
+            <li><a href="{% url 'shared_files' %}">Shared Files</a></li>
+            <li><a uk-icon="social" href="{% url 'share_form' %}">Share</a></li>
+        </ul>
+    </div>
+{% endblock %}

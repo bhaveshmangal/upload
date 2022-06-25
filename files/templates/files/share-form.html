@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+    <div class="uk-container">
+        
+        <div class="uk-card uk-card-default uk-card-body">
+    <form class="uk-form" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="uk-margin">
+            <label>{{field.label}}</label>
+            {{field}}
+        </div>
+        {% endfor %}
+        
+        <input class="uk-button uk-button-secondary" type="submit" value="Submit">
+    </form>
+</div>
+</div>
+
+{% endblock %}

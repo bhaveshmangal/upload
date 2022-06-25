@@ -1,0 +1,23 @@
+{% load static %}
+<!-- Header Section -->
+<header>
+    <nav class="uk-navbar-container" uk-navbar>
+      <div class="uk-navbar-left">
+        <a class="uk-navbar-item uk-logo" href="#">UPLOAD</a>
+      </div>
+        <div class="uk-navbar-right">
+          <div class="uk-margin">
+            <form class="uk-search uk-search-navbar">
+                <span uk-search-icon></span>
+                <input class="uk-search-input" type="search" placeholder="Search">
+            </form>
+        </div>
+        <ul class="uk-navbar-nav">
+          
+          <li class="uk-parent"><a>{{user.profile.name}}</a></li>
+          <li class="uk-parent"><a href="{% url 'logout' %}">Logout</a></li>
+                  
+        </ul>
+      </div>
+    </nav>
+</header>

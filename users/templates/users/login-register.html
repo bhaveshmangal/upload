@@ -1,0 +1,58 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+{% if page == 'register' %}
+<div class="uk-container">
+  <div class="uk-card uk-card-default uk-card-body">
+    <div>
+      <h3>Register an Account</h3>
+    </div>
+    <form class="uk-form uk-margin-small" method="POST" action="{% url 'register' %}">
+      {% csrf_token %}
+      {{form.as_p}}
+        <input class="uk-button uk-button-primary" type="submit" value="Sign Up" />
+    </form>
+    <div>
+      <p>Already have an Account?</p>
+      <a class="uk-button uk-button-secondary" href="{% url 'login' %}">Log In</a>
+    </div>
+  </div>
+</div>
+    
+{% else %}
+<div class="uk-container">
+  <div class="uk-card uk-card-large uk-card-default">
+    <div class="uk-card uk-card-body">
+      <form action="" method="POST">
+        {% csrf_token %}
+        <div class="uk-margin">
+          <div class="uk-inline">
+              <span class="uk-form-icon" uk-icon="icon: user"></span>
+              <input class="uk-input" name="username" type="text" placeholder="Username">
+          </div>
+        </div>
+  
+        <div class="uk-margin">
+          <div class="uk-inline">
+              <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+              <input class="uk-input" name="password" type="password" placeholder="Password">
+          </div>
+        </div>
+        <div>
+        <input class="uk-button uk-button-primary" type="submit" value="Log In" />
+        <a href="">Forget Password?</a>
+        </div>
+      </form>
+      <div>
+        <p>Don’t have an Account?</p>
+        <div>
+          <a href="{% url 'register' %}">
+            <input class="uk-button uk-button-secondary" type="submit" value="Create New Account" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}    
+{% endblock content %}

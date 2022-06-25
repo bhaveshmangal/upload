@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="en">
+  <head>
+    <title>Upload</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'uikit/dist/css/uikit.min.css' %}" />
+    <script src="{% static 'uikit/dist/js/uikit.min.js' %}"></script>
+    <script src="{% static 'uikit/dist/js/uikit-icons.min.js' %}"></script>
+</head>
+
+<body>
+    <!-- {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %} -->
+    {% if messages %}
+    {% for message in messages %}
+    <div class="uk-alert uk-alert-{{message.tags}}" uk-alert>
+      <a class="uk-alert-close" uk-close></a>
+      <p>{{message}}</p>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    {% block content %}
+
+    {% endblock content %}
+</body>
+<script src="{% static 'js/main.js' %}"></script>
+
+</html>

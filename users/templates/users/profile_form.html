@@ -1,0 +1,25 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{% include 'navbar.html' %}
+
+    <div class="uk-container">
+        <div class="uk-card uk-card-default uk-card-body">
+            <a uk-icon="icon:chevron-left" href="{% url 'account' %}"></a>
+            <br>
+
+            <form class="uk-form uk-align-center" method="POST" action="{% url 'edit-account' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <!-- Input:Text -->
+                {% for field in form %}
+                <div class="uk-margin">
+                    <label>{{field.label}}</label>
+                    {{field}}
+                </div>
+                {% endfor %}
+                <input class="uk-button uk-button-secondary" type="submit" value="Submit" />
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
