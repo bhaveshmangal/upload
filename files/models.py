@@ -15,7 +15,6 @@ class File(models.Model):
         return str(self.uploaded_file)
 
 class Shared(models.Model):
-    owner = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="shared_with")
     files = models.ForeignKey(File, null=True, on_delete=models.CASCADE)
     share_with = models.ManyToManyField(Profile)
     created = models.DateTimeField(auto_now_add=True)

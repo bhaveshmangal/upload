@@ -21,15 +21,18 @@ def sharedFiles(request):
     context = {'shared': shared}
     return render(request, 'files/shared-files.html', context)
 
+@login_required(login_url="login")
 def share(request):
     profile = request.user.profile
     form = ShareForm()
+    form.fields["files"].queryset = File.objects.filter(owner=profile)
+    form.fields["share_with"].queryset = Profile.objects.exclude(username=profile)
     if request.method == 'POST':
-        form = ShareForm(request.POST, request.FILES)
+        form = ShareForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
-            share = form.save(commit=False)
-            share.save()
+            share = form.save()
             share.share_with.add(profile)
+            share.save()
             return redirect('shared_files')
     context = {'form': form}
     return render(request, 'files/share-form.html', context)
