@@ -1,0 +1,35 @@
+{% extends 'main.html' %} {% block content %} {% include 'navbar.html' %}
+<div class="uk-container uk-padding">
+  <div class="uk-flex">
+    {% for profile in profiles %}
+    <div class="uk-card uk-card-default uk-margin-left uk-width-1-4">
+      <div class="uk-card-header">
+        <div class="uk-grid-small uk-flex-middle" uk-grid>
+          <a
+            class="uk-button uk-button-text"
+            href="{% url 'profile' profile.id %}"
+          >
+            <div class="uk-width-auto">
+              <img
+                class="uk-border-circle"
+                src="{{ profile.profile_image.url }}"
+                height="60"
+                width="60"
+              />
+            </div>
+            <div class="uk-width-expand">
+              <h3 class="uk-card-title uk-margin-remove-bottom">
+                {{profile.name}}
+              </h3>
+              <h5 class="uk-text-meta uk-margin-remove-top">
+                Username: {{profile.username}}
+              </h5>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

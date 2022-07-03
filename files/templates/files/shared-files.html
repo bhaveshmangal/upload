@@ -1,18 +1,20 @@
-{% extends 'main.html' %}
-
-{% block content %}
-{% include 'navbar.html' %}
+{% extends 'main.html' %} {% block content %} {% include 'navbar.html' %}
 {% include 'sidebar.html' %}
 <div class="uk-container">
-    <div class="uk-flex">
+  <div class="uk-flex">
     <div class="uk-grid-column-small uk-child-width-1-4 uk-text-center" uk-grid>
-  {% for file in shared %}
-      <div class="uk-card uk-card-default uk-card-body uk-margin-left" >
-        <img src="{{file.files.url}}"/>
-        <label>{{file.files}}</label>
+      {% for file in shared %}
+      <div class="uk-card uk-card-default uk-card-body uk-margin-left">
+        <embed
+          src="{{file.files.uploaded_file.url}}"
+          width="100%"
+          height="200"
+        />
+        <div class="uk-label">{{file.files}}</div>
+        <div class="uk-label">Owner: {{file.files.owner}}</div>
       </div>
-{% endfor %}
-</div>
-</div>
+      {% endfor %}
+    </div>
+  </div>
 </div>
 {% endblock %}

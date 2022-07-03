@@ -6,9 +6,6 @@
     </div>
     <div>
       <div class="uk-card-body">
-        <a class="uk-icon-link" href="{% url 'edit-account' %}" uk-icon="pencil"
-          >Edit</a
-        >
         <h1 class="uk-heading uk-card-title">{{profile.name}}</h1>
         <p>Username: {{profile.username}}</p>
         <p>Email Address: {{profile.email}}</p>
@@ -16,4 +13,5 @@
     </div>
   </div>
 </div>
+
 {% endblock %}

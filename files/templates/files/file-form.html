@@ -1,20 +1,31 @@
-{% extends 'main.html' %}
-
-{% block content %}
-<div class="uk-container">
+{% extends 'main.html' %} {% block content %}
+<div class="auth">
+  <div class="uk-container uk-position-center">
     <div class="uk-card uk-card-default uk-card-body">
-        <a uk-icon="icon:chevron-left" href="{% url 'files' %}"></a>
-        <br>
-    <form class="uk-form" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {% for field in form %}
+      <a
+        class="uk-icon-link"
+        uk-icon="icon:chevron-left"
+        href="{% url 'files' %}"
+      ></a>
+      <br />
+      <form
+        class="uk-form uk-form-horizontal"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        {% csrf_token %} {% for field in form %}
         <div class="uk-margin">
-            <label>{{field.label}}</label>
-            {{field}}
+          <label class="uk-form-label">{{field.label}}</label>
+          <div class="uk-form-controls">{{field}}</div>
         </div>
         {% endfor %}
-        <input class="uk-button uk-button-secondary" type="submit" value="Submit">
-    </form>
+        <input
+          class="uk-button uk-button-secondary"
+          type="submit"
+          value="Submit"
+        />
+      </form>
     </div>
+  </div>
 </div>
 {% endblock %}

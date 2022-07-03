@@ -7,6 +7,7 @@ from .forms import ProfileForm
 from django.contrib.auth.decorators import login_required
 from .models import Profile
 from django.contrib.auth.forms import UserCreationForm
+from .utils import searchProfiles
 
 # Create your views here.
 def loginUser(request):
@@ -19,13 +20,13 @@ def loginUser(request):
         try:
             user = User.objects.get(username= username)
         except:
-            messages.error(request, 'Username does not exist')
+            messages.warning(request, 'Username does not exist')
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('account')
+            return redirect('files')
         else:
-            messages.error(request, 'Username or password is incorrect')
+            messages.warning(request, 'Username or password is incorrect')
     return render(request, 'users/login-register.html')
 
 def logoutUser(request):
@@ -53,8 +54,12 @@ def registerUser(request):
 def profile(request, pk):
     profile = Profile.objects.get(id=pk)
     context = {'profile': profile}
-    return render(request, 'users/account.html', context)
+    return render(request, 'users/profile.html', context)
 
+def profiles(request):
+    profiles, search_query = searchProfiles(request)
+    context = {'profiles': profiles, 'search_query': search_query}
+    return render(request, 'users/profiles.html', context)
 
 @login_required(login_url='login')
 def userAccount(request):
@@ -70,7 +75,6 @@ def editAccount(request):
         form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()
-            return redirect('account')
-
+            return redirect('files')
     context = {'form': form}
     return render(request, 'users/profile_form.html', context)

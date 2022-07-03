@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import FileForm, ShareForm
 from django.contrib.auth.models import User
 from users.models import Profile
-from users.views import profile
+from users.views import profiles
 
 # Create your views here.
 
@@ -17,7 +17,6 @@ def myFiles(request):
 def sharedFiles(request):
     profile = request.user.profile
     shared = profile.shared_set.all()
-    print(shared)
     context = {'shared': shared}
     return render(request, 'files/shared-files.html', context)
 
@@ -28,10 +27,10 @@ def share(request):
     form.fields["files"].queryset = File.objects.filter(owner=profile)
     form.fields["share_with"].queryset = Profile.objects.exclude(username=profile)
     if request.method == 'POST':
-        form = ShareForm(request.POST, request.FILES, instance=profile)
+        print(request.POST)
+        form = ShareForm(request.POST)
         if form.is_valid():
             share = form.save()
-            share.share_with.add(profile)
             share.save()
             return redirect('shared_files')
     context = {'form': form}

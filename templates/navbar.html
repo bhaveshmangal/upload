@@ -1,23 +1,44 @@
 {% load static %}
 <!-- Header Section -->
 <header>
-    <nav class="uk-navbar-container" uk-navbar>
-      <div class="uk-navbar-left">
-        <a class="uk-navbar-item uk-logo" href="#">UPLOAD</a>
+  <nav class="uk-navbar-container" uk-navbar>
+    <div class="uk-navbar-left">
+      <a class="uk-navbar-item uk-logo" href="{% url 'files' %}"
+        ><img src="{% static 'images/logos_black.svg' %}"
+      /></a>
+    </div>
+    <div class="uk-navbar-right">
+      <div class="uk-margin">
+        <form
+          class="uk-search uk-search-navbar"
+          action="{% url 'profiles' %}"
+          method="get"
+        >
+          <span uk-search-icon></span>
+          <input
+            class="uk-search-input"
+            type="search"
+            placeholder="Search"
+            name="search_query"
+            value="{{search_query}}"
+          />
+        </form>
       </div>
-        <div class="uk-navbar-right">
-          <div class="uk-margin">
-            <form class="uk-search uk-search-navbar">
-                <span uk-search-icon></span>
-                <input class="uk-search-input" type="search" placeholder="Search">
-            </form>
-        </div>
-        <ul class="uk-navbar-nav">
-          
-          <li class="uk-parent"><a>{{user.profile.name}}</a></li>
-          <li class="uk-parent"><a href="{% url 'logout' %}">Logout</a></li>
-                  
-        </ul>
-      </div>
-    </nav>
+      <ul class="uk-navbar-nav">
+        <li class="uk-parent">
+          <a href="{% url 'account' %}"
+            ><img
+              class="uk-border-circle"
+              src="{{user.profile.profile_image.url}}"
+              height="50"
+              width="50"
+          /></a>
+        </li>
+        <li class="uk-parent">
+          <a href="{% url 'account' %}">{{user.profile.name}}</a>
+        </li>
+        <li class="uk-parent"><a href="{% url 'logout' %}">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
 </header>

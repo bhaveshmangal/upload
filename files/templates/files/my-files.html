@@ -1,18 +1,15 @@
-{% extends 'main.html' %}
-
-{% block content %}
-{% include 'navbar.html' %}
+{% extends 'main.html' %} {% block content %} {% include 'navbar.html' %}
 {% include 'sidebar.html' %}
 <div class="uk-container">
-    <div class="uk-flex">
+  <div class="uk-flex">
     <div class="uk-grid-column-small uk-child-width-1-4 uk-text-center" uk-grid>
-  {% for file in files %}
-      <div class="uk-card uk-card-default uk-card-body uk-margin-left" >
-        <img src="{{file.uploaded_file.url}}"/>
-        <label>{{file.uploaded_file}}</label>
+      {% for file in files %}
+      <div class="uk-card uk-card-default uk-card-body uk-margin-left">
+        <embed src="{{file.uploaded_file.url}}" width="90%" height="150" />
+        <div class="uk-label">{{file.uploaded_file}}</div>
       </div>
-{% endfor %}
-</div>
-</div>
+      {% endfor %}
+    </div>
+  </div>
 </div>
 {% endblock %}

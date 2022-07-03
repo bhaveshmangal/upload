@@ -1,25 +1,32 @@
-{% extends 'main.html' %}
-
-{% block content %}
-{% include 'navbar.html' %}
-
-    <div class="uk-container">
-        <div class="uk-card uk-card-default uk-card-body">
-            <a uk-icon="icon:chevron-left" href="{% url 'account' %}"></a>
-            <br>
-
-            <form class="uk-form uk-align-center" method="POST" action="{% url 'edit-account' %}" enctype="multipart/form-data">
-                {% csrf_token %}
-                <!-- Input:Text -->
-                {% for field in form %}
-                <div class="uk-margin">
-                    <label>{{field.label}}</label>
-                    {{field}}
-                </div>
-                {% endfor %}
-                <input class="uk-button uk-button-secondary" type="submit" value="Submit" />
-            </form>
+{% extends 'main.html' %} {% block content %} {% include 'navbar.html' %}
+<div class="auth">
+  <div class="uk-container">
+    <div class="uk-card uk-card-default uk-card-body">
+      <a
+        class="uk-icon-link"
+        uk-icon="icon:chevron-left"
+        href="{% url 'account' %}"
+      ></a>
+      <br />
+      <form
+        class="uk-form uk-form-horizontal uk-margin-large"
+        method="POST"
+        action="{% url 'edit-account' %}"
+        enctype="multipart/form-data"
+      >
+        {% csrf_token %} {% for field in form %}
+        <div class="uk-margin">
+          <label class="uk-form-label">{{field.label}}</label>
+          <div class="uk-form-controls">{{field}}</div>
         </div>
+        {% endfor %}
+        <input
+          class="uk-button uk-button-secondary"
+          type="submit"
+          value="Submit"
+        />
+      </form>
     </div>
-
+  </div>
+</div>
 {% endblock %}

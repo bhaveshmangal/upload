@@ -25,10 +25,9 @@ class ShareForm(ModelForm):
             'files', 'share_with',
         ]
         widgets = { 
-            'files': forms.CheckboxSelectMultiple(),
             'share_with': forms.CheckboxSelectMultiple(),
         }
-        
+    
     def __init__(self, *args, **kwargs):
         super(ShareForm, self).__init__(*args, **kwargs)
 
