@@ -1,0 +1,19 @@
+trigger:
+- master # or the name of your main branch
+
+steps:
+# Prepare Analysis Configuration task
+- task: SonarQubePrepare@5
+  inputs:
+    SonarQube: 'https://511e-2401-4900-1ca2-ed9b-ce85-ec52-665f-41d0.ngrok-free.app'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'uploadazure'
+
+# Run Code Analysis task
+- task: SonarQubeAnalyze@5
+
+# Publish Quality Gate Result task
+- task: SonarQubePublish@5
+  inputs:
+    pollingTimeoutSec: '300'
