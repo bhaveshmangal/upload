@@ -11,9 +11,6 @@ variables:
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
-  # Environment name
-  environmentName: ''
-
   # Project root folder. Point to the folder containing manage.py file.
   projectRoot: $(System.DefaultWorkingDirectory)
 
@@ -32,10 +29,10 @@ stages:
     # SonarQube Prepare Analysis Configuration task
     - task: SonarQubePrepare@5
       inputs:
-        SonarQube: 'YourSonarqubeServerEndpoint'
+        SonarQube: 'https://511e-2401-4900-1ca2-ed9b-ce85-ec52-665f-41d0.ngrok-free.app/sonarqube/'
         scannerMode: 'CLI'
         configMode: 'manual'
-        cliProjectKey: 'YourProjectKey'
+        cliProjectKey: 'uploadazure'
 
     # Python setup
     - task: UsePythonVersion@0
@@ -82,7 +79,6 @@ stages:
   - deployment: DeploymentJob
     pool:
       vmImage: $(vmImageName)
-    environment: $(environmentName)
     strategy:
       runOnce:
         deploy:
