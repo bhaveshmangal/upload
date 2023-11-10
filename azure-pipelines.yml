@@ -11,6 +11,9 @@ variables:
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
+  # Environment name
+  environmentName: 'upload'
+
   # Project root folder. Point to the folder containing manage.py file.
   projectRoot: $(System.DefaultWorkingDirectory)
 
@@ -79,6 +82,7 @@ stages:
   - deployment: DeploymentJob
     pool:
       vmImage: $(vmImageName)
+    environment: $(environmentName)
     strategy:
       runOnce:
         deploy:
