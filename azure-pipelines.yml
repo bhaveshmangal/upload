@@ -2,9 +2,7 @@ trigger:
 - master
 
 pool:
-  name: blacklock
-  demands:
-  - agent.name -equals megatron
+  name: Azure Pipelines
   vmImage: 'ubuntu-latest'
 
 
