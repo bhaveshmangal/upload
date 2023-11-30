@@ -24,7 +24,7 @@ steps:
     SonarQube: 'blacklock_sonar'
     scannerMode: 'CLI'
     configMode: 'manual'
-    cliProjectKey: 'uploadazure'
+    cliProjectKey: 'Hq:sU0sxJI3h1BgU'
 
 - script: |
     python manage.py test
