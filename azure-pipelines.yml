@@ -24,7 +24,7 @@ steps:
     SonarQube: 'blacklock_sonar'
     scannerMode: 'CLI'
     configMode: 'manual'
-    cliProjectKey: 'HicgBW:ciCWHJdBG'
+    cliProjectKey: 'zdzryvN8nIWI:Yvz'
 
 - script: |
     python manage.py test
