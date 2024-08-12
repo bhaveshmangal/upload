@@ -32,7 +32,8 @@ jobs:
         run: |
           docker run --rm \\
           -v $(pwd):/app \\
-          -e SONAR_PROJECTKEY="SAMPLE_PROJECT_KEY" \\
+          -e SONAR_PROJECTKEY="TbRcoWOdDgpFoiTl" \\
           -e SONAR_HOST_URL=${{ secrets.SONAR_HOST_URL }} \\
           -e SONAR_TOKEN=${{ secrets.SONAR_TOKEN }} \\ 
           blacklocksec/code-scanner:latest
+      
