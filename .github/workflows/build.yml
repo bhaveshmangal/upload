@@ -34,6 +34,6 @@ jobs:
           -v $(pwd):/app \
           -e SONAR_PROJECTKEY="F9KDK.tt-YeV_-ad" \
           -e SONAR_HOST_URL=${{ secrets.SONAR_HOST_URL }} \
-          -e SONAR_TOKEN=${{ secrets.SONAR_TOKEN }} \ 
+          -e SONAR_TOKEN=${{ secrets.SONAR_TOKEN }} \
           blacklocksec/code-scanner:latest
       
