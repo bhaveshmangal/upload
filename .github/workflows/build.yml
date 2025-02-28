@@ -18,6 +18,7 @@ jobs:
      SONAR_PROJECTKEY: "yC_nG9zYSqAA0vW5"
      SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+     SECURITY_SEVERITY_LEVELS: "low"
 
 
    steps:
