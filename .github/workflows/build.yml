@@ -11,14 +11,13 @@ jobs:
  blacklock-scan:
    runs-on: ubuntu-latest
    container:
-     image: blacklocksec/code-scanner:staging  # Directly use the scanner image
+     image: blacklocksec/code-scanner:latest 
 
 
    env:
-     SONAR_PROJECTKEY: "yC_nG9zYSqAA0vW5"
+     SONAR_PROJECTKEY: "vOkImmw0lV6wWf5e"
      SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-     SECURITY_SEVERITY_LEVELS: "major"
 
 
    steps:
@@ -27,4 +26,4 @@ jobs:
 
 
      - name: Run Blacklock Code Scanner
-       run: /usr/local/bin/run.sh  # Adjust if the script location differs
+       run: /usr/local/bin/run.sh
