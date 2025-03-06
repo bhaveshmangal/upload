@@ -1,29 +1,33 @@
-name: Code Scan
-
+name: Build
 
 on:
- push:
-   branches:
-     - master
-
+  push:
+    branches:
+      - master
 
 jobs:
- blacklock-scan:
-   runs-on: ubuntu-latest
-   container:
-     image: blacklocksec/code-scanner:staging 
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - uses: sonarsource/sonarqube-scan-action@master
+        env:
+          
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      # If you wish to fail your job when the Quality Gate is red, uncomment the
+      # following lines. This would typically be used to fail a deployment.
+      # - uses: sonarsource/sonarqube-quality-gate-action@master
+      #   timeout-minutes: 5
+      #   env:
+      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
+      - name: Pull Blacklock Code Scanner Docker Image
+        run: docker pull blacklocksec/code-scanner:latest
 
-   env:
-     SONAR_PROJECTKEY: "vOkImmw0lV6wWf5e"
-     SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
-
-   steps:
-     - name: Checkout Code
-       uses: actions/checkout@v4
-
-
-     - name: Run Blacklock Code Scanner
-       run: /usr/local/bin/run.sh
+      - name: Run Blacklock Code Scanner
+        run: docker run --rm -v $(pwd):/app -e SONAR_PROJECTKEY="LMDpFD7j-mNzPRpL" -e SONAR_HOST_URL=${{ secrets.SONAR_HOST_URL }} -e SONAR_TOKEN=${{ secrets.SONAR_TOKEN }}  blacklocksec/code-scanner:latest
+      
