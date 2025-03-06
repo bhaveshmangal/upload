@@ -11,7 +11,7 @@ jobs:
  blacklock-scan:
    runs-on: ubuntu-latest
    container:
-     image: blacklocksec/code-scanner:latest 
+     image: blacklocksec/code-scanner:staging 
 
 
    env:
