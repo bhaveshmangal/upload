@@ -11,7 +11,7 @@ jobs:
   blacklock-scan:
     runs-on: ubuntu-latest
     container:
-      image: blacklocksec/code-scanner:latest  # Use the scanner image
+      image: blacklocksec/code-scanner:stagingv2  # Use the scanner image
       options: > 
         --volume "${{ github.workspace }}:/app" 
         --volume "/bl_reports:/bl_reports"
