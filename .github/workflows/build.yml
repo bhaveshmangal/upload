@@ -18,7 +18,7 @@ jobs:
 
 
     env:
-      SONAR_PROJECTKEY: ${{ secrets.SONAR_PROJECTKEY }}
+      SONAR_PROJECTKEY: "NN2z:g6v.F78xgTC"
       SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
