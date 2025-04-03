@@ -1,12 +1,9 @@
-
-name: Code Scan
-
+name: Blacklock Code Scanner
 
 on:
   push:
     branches:
       - master
-
 
 jobs:
   blacklock-scan:
@@ -16,24 +13,16 @@ jobs:
       options: > 
         --volume "${{ github.workspace }}:/app"
         --volume "/bl_reports:/bl_reports"
-
-
     
       env:
-        SONAR_PROJECTKEY: NN2z:g6v.F78xgTC
+        SONAR_PROJECTKEY: LMDpFD7j-mNzPRpL
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
     
-    
-
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-
-
       - name: Run Blacklock Code Scanner
-        run: /usr/local/bin/run.sh  # Adjust the script location if needed
-
-
+        run: /usr/local/bin/run.sh
       
