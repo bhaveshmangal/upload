@@ -1,0 +1,22 @@
+name: CI/CD
+
+on: 
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+		
+    steps: 
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: Start scan
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: "https://blacklock.io/api/scans/$SCAN_ID/start/"
+          method: "POST"
+          headers: 'Api-Key: ${{ secrets.API_KEY }}'
+        env:
+          SCAN_ID: ${{ secrets.SCAN_ID }}
