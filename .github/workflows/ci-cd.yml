@@ -3,23 +3,25 @@ name: CI/CD
 on:
   push:
     branches:
-      - master
+      - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
 
       - name: Start scan
         uses: fjogeleit/http-request-action@v1
         with:
           url: "https://app.blacklock.io/api/scans/${{ secrets.SCAN_ID }}/start/"
           method: "POST"
-          customHeaders: '{"Api-Key":"${{ secrets.API_KEY }}"}'
-          timeout: 30000        # 5000 -> 30000
-          retry: 2              # transient spike pe auto-retry
+          customHeaders: '{"Api-Key":"${{ secrets.BLACKLOCK_API_KEY }}"}'
+          timeout: 30000
+          retry: 2
           retryWait: 3000
+
         env:
           SCAN_ID: ${{ secrets.SCAN_ID }}
