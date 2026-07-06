@@ -3,3 +3,8 @@ Django==4.2.7
 Pillow==10.1.0
 sqlparse==0.4.4
 typing_extensions==4.8.0
+yaml==1.10.2
+yaml==2.9.0
+urllib3==2.6.3
+urllib3==2.7.0
+Pillow==12.2.0
